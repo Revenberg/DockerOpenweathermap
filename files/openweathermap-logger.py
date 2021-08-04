@@ -83,19 +83,19 @@ try:
         values['status'] = w.status         # short version of status (eg. 'Rain')
         values['detailed_status']  = w.detailed_status  # detailed version of status (eg. 'light rain')
 
-        wind  = w.get_wind()
+        wind  = w.wind()
         values['wind_speed']  = wind ["speed"]
         values['wind_direction_deg']  = wind ["deg"]
-        values['humidity']  = w.get_humidity()
-        temperature  = w.get_temperature('celsius')
+        values['humidity']  = w.humidity()
+        temperature  = w.temperature('celsius')
         values['temp']  = temperature["temp"]
-        values['pressure'] = w.get_pressure()['press']
-        values['clouds'] = w.get_clouds() #Cloud coverage
-        values["sunrise"] = w.get_sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
-        values["sunset"] = w.get_sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
-        values["weather_code"] =  w.get_weather_code()
-        values["weather_icon"] = w.get_weather_icon_name()       
-        values["visibility_distance"] = w.get_visibility_distance()      
+        values['pressure'] = w.pressure()['press']
+        values['clouds'] = w.clouds() #Cloud coverage
+        values["sunrise"] = w.sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
+        values["sunset"] = w.sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
+        values["weather_code"] =  w.weather_code()
+        values["weather_icon"] = w.weather_icon_name()       
+        values["visibility_distance"] = w.visibility_distance()      
 
         location = observation.get_location().get_name()
         values["location"] = location
