@@ -67,7 +67,7 @@ except Exception as e:
 
 try:
     while True:
-        owm = OWM(apikey)
+        owm = OWM(apikey, language=language)
         mgr = owm.weather_manager()
 
         # Here put your city and Country ISO 3166 country codes
@@ -135,6 +135,8 @@ try:
         # Print the data
         if __debug__:
             print(values)
+        print(values)
+        sys.stdout.flush()
 
         json_body = {'points': [{
                                  'tags': {'location':  location },
