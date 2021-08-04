@@ -104,9 +104,9 @@ try:
         print("=================== 2 =====3=======")
         values['clouds'] = w.clouds #Cloud coverage
         print("=================== 2 ======4======")
-        values["sunrise"] = w.sunrise_time #Sunrise time (GMT UNIXtime or ISO 8601)
+        values["sunrise"] = w.sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
         print("=================== 2 =====5=======")
-        values["sunset"] = w.sunset_time #Sunset time (GMT UNIXtime or ISO 8601)
+        values["sunset"] = w.sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
         print("=================== 2 ====6========")
         values["weather_code"] =  w.weather_code
         print("=================== 2 ====7========")
