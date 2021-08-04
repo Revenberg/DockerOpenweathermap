@@ -151,7 +151,10 @@ try:
         myLocation = list_of_locations[0]
         
         print(myLocation)
-        values['uvi'] = owm.uvindex_around_coords(myLocation.get_lat(), myLocation.get_lon()).get_value()  
+        print(myLocation.lat)
+        print(myLocation.lon)
+        print(owm.uvindex_around_coords(myLocation.get_lat(), myLocation.get_lon()) )
+        values['uvi'] = owm.uvindex_around_coords(myLocation.get_lat(), myLocation.get_lon())
 
         # Print the data
         if __debug__:
