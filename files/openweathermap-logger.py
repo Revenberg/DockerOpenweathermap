@@ -104,7 +104,7 @@ try:
         values["weather_icon"] = w.weather_icon_name()       
         values["visibility_distance"] = w.visibility_distance()      
 
-        location = observation.get_location().get_name()
+        location = observation.location().get_name()
         values["location"] = location
 
         rain = w.get_rain()
