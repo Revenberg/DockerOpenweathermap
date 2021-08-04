@@ -65,7 +65,7 @@ except Exception as e:
     print('Error querying open database: ' )
     print(e)
 
-config_dict = config()
+config_dict = config.get_default_config()
 config_dict['language'] = language
         
 try:
