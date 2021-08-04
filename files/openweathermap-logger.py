@@ -169,6 +169,8 @@ try:
                             }
 
         print("=================== 2 ===1=========")
+        print(values)
+        sys.stdout.flush()
         client = InfluxDBClient(host=influx_server,
                                 port=influx_port)
         success = client.write(json_body,
