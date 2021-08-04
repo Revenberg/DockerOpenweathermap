@@ -151,9 +151,10 @@ try:
         myLocation = list_of_locations[0]
         
         uvimgr = owm.uvindex_manager()
+
         print(uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon ) )
 
-        values['uvi'] = uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon ).humidity
+        values['uvi'] = uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon ).get_value()
 
         # Print the data
         if __debug__:
