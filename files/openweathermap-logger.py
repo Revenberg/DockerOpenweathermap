@@ -64,7 +64,10 @@ except Exception as e:
 
 try:
     while True:
-        owm = pyowm.OWM(apikey, language)
+        print('apikey=' + apikey)
+        print('language=' + language)
+        print('country=' + country)
+        owm = pyowm.OWM(apikey, language=language)
         # Here put your city and Country ISO 3166 country codes
         observation = owm.weather_at_place(country)
 
