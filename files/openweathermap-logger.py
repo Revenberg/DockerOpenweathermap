@@ -153,8 +153,8 @@ try:
         print(myLocation)
         print(myLocation.lat)
         print(myLocation.lon)
-        print(owm.uvindex_around_coords(myLocation.get_lat(), myLocation.get_lon()) )
-        values['uvi'] = owm.uvindex_around_coords(myLocation.get_lat(), myLocation.get_lon())
+        print(mgr.uvindex_around_coords(myLocation.lat, myLocation.lon ) )
+        values['uvi'] = mgr.uvindex_around_coords(mgr.uvindex_around_coords(myLocation.lat, myLocation.lon ) )
 
         # Print the data
         if __debug__:
