@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if ($(git remote show origin | grep "local out of date" | wc -l) -eq 0); then
+rc=$(git remote show origin |  grep "local out of date" | wc -l)
+
+if [ $rc -ne "0" ]; then
   git pull
   chmod +x build.sh
 
