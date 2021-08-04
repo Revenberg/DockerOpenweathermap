@@ -89,8 +89,14 @@ try:
 
         values['wind_speed']  = wind ["speed"]
         values['wind_direction_deg']  = wind ["deg"]
+        
+        print("=================== 0 ============")
         print(w.humidity)
+        print("=================== 1 ============")
+
         values['humidity']  = w.humidity
+
+        print("=================== 2 ============")
         temperature  = w.temperature('celsius')
         print(temperature)
         values['temp']  = temperature["temp"]        
