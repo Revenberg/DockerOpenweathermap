@@ -1,5 +1,5 @@
 from pyowm import OWM
-from pyowm.utils import pyowm_config
+from pyowm.utils import config
 from pyowm.utils import timestamps
 
 import os
@@ -11,20 +11,20 @@ import configparser
 import init_db
 from influxdb import InfluxDBClient
 
-config = configparser.RawConfigParser(allow_no_value=True)
-config.read("weather_config.ini")
+eConfig = configparser.RawConfigParser(allow_no_value=True)
+eConfig.read("weather_config.ini")
 
-log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
-do_raw_log = config.getboolean('Logging', 'do_raw_log')
+log_path = eConfig.get('Logging', 'log_path', fallback='/var/log/solar/')
+do_raw_log = eConfig.getboolean('Logging', 'do_raw_log')
 apikey = os.getenv('apikey', '')
 
-country = config.get('Weather', 'country')
-language = config.get('Weather', 'language')
+country = eConfig.get('Weather', 'country')
+language = eConfig.get('Weather', 'language')
 
-influx_server = config.get('InfluxDB', 'influx_server')
-influx_port = int(config.get('InfluxDB', 'influx_port'))
-influx_database = config.get('InfluxDB', 'database')
-influx_measurement = config.get('InfluxDB', 'measurement')
+influx_server = eConfig.get('InfluxDB', 'influx_server')
+influx_port = int(eConfig.get('InfluxDB', 'influx_port'))
+influx_database = eConfig.get('InfluxDB', 'database')
+influx_measurement = eConfig.get('InfluxDB', 'measurement')
 
 if __debug__:
     print("running with debug")
@@ -65,7 +65,7 @@ except Exception as e:
     print('Error querying open database: ' )
     print(e)
 
-config_dict = pyowm_config.get_default_config()
+config_dict = config.get_default_config()
 config_dict['language'] = language
         
 try:
