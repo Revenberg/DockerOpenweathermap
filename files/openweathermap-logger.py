@@ -1,4 +1,7 @@
-import pyowm
+from pyowm import OWM
+from pyowm.utils import config
+from pyowm.utils import timestamps
+
 import os
 import socket
 import binascii
@@ -67,9 +70,11 @@ try:
         print('apikey=' + apikey)
         print('language=' + language)
         print('country=' + country)
-        owm = pyowm.OWM(apikey)
+        owm = OWM(apikey)
+        mgr = owm.weather_manager()
+        
         # Here put your city and Country ISO 3166 country codes
-        observation = owm.weather_at_place(country)
+        observation = mgr.weather_at_place(country)
 
         w = observation.get_weather()
         # Weather details from INTERNET
