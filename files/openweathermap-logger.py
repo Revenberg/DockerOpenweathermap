@@ -80,8 +80,8 @@ try:
         # Weather details from INTERNET
 
         values = dict()
-        values['status'] = w.get_status         # short version of status (eg. 'Rain')
-        values['detailed_status']  = w.get_detailed_status  # detailed version of status (eg. 'light rain')
+        values['status'] = w.status         # short version of status (eg. 'Rain')
+        values['detailed_status']  = w.detailed_status  # detailed version of status (eg. 'light rain')
 
         wind  = w.get_wind()
         values['wind_speed']  = wind ["speed"]
