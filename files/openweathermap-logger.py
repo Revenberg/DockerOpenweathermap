@@ -133,7 +133,7 @@ try:
                values['lastrain'] = rain["1h"]
             
         print("=================== 2 ====12========")
-        snow = w.get_snow()
+        snow = w.snow
         #If there is no data recorded from rain then return 0, otherwise #return the actual data
         if len(snow) == 0:
             values['lastsnow'] = float("0")
