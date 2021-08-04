@@ -150,12 +150,10 @@ try:
         list_of_locations = reg.locations_for(s[0], country=s[1])
         myLocation = list_of_locations[0]
         
-        print(myLocation)
-        print(myLocation.lat)
-        print(myLocation.lon)
         uvimgr = owm.uvindex_manager()
         print(uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon ) )
-        values['uvi'] = uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon )
+
+        values['uvi'] = uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon ).humidity
 
         # Print the data
         if __debug__:
