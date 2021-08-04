@@ -84,12 +84,19 @@ try:
         values['detailed_status']  = w.detailed_status  # detailed version of status (eg. 'light rain')
 
         wind  = w.wind()
+
+        print(wind)
+
         values['wind_speed']  = wind ["speed"]
         values['wind_direction_deg']  = wind ["deg"]
-        values['humidity']  = w.humidity()
+        values['humidity']  = w.get_humidity()
         temperature  = w.temperature('celsius')
-        values['temp']  = temperature["temp"]
+        print(temperature)
+        values['temp']  = temperature["temp"]        
+        print(w.pressure)
         values['pressure'] = w.pressure()['press']
+        
+        print(w.clouds())
         values['clouds'] = w.clouds() #Cloud coverage
         values["sunrise"] = w.sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
         values["sunset"] = w.sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
