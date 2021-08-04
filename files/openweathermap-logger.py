@@ -65,9 +65,12 @@ except Exception as e:
     print('Error querying open database: ' )
     print(e)
 
+config_dict = config()
+config_dict['language'] = language
+        
 try:
     while True:
-        owm = OWM(apikey, language=language)
+        owm = OWM(apikey, config_dict)
         mgr = owm.weather_manager()
 
         # Here put your city and Country ISO 3166 country codes
