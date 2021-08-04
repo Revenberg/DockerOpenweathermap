@@ -96,6 +96,7 @@ try:
 
         values['humidity']  = w.humidity
 
+
         print("=================== 2 ============")
         temperature  = w.temperature('celsius')
         print(temperature)
