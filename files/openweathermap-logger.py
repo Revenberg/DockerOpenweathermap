@@ -144,7 +144,7 @@ try:
                values['lastsnow'] = snow["1h"]            
 
 #       UV index
-        print("=================== 2 ===13=========")
+        print("=================== 2 === 13=========")
         s = country.split(",")
         reg = owm.city_id_registry()
         list_of_locations = reg.locations_for(s[0], country=s[1])
