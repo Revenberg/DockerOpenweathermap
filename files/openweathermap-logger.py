@@ -154,8 +154,8 @@ try:
 
         uvi = uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon ) 
         print(uvi)
-        print(uvi.get_value())
-        values['uvi'] = uvi.get_value()
+        print(uvi.value)
+        values['uvi'] = uvi.value
 
         # Print the data
         if __debug__:
