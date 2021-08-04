@@ -88,34 +88,39 @@ try:
         print(wind)
 
         values['wind_speed']  = wind ["speed"]
-        values['wind_direction_deg']  = wind ["deg"]
-        
-        print("=================== 0 ============")
-        print(w.humidity)
-        print("=================== 1 ============")
-
+        values['wind_direction_deg']  = wind ["deg"]                
         values['humidity']  = w.humidity
 
-
-        print("=================== 2 ============")
+        print("=================== 2 ====1========")
         temperature  = w.temperature('celsius')
         print(temperature)
         values['temp']  = temperature["temp"]        
         print(w.pressure)
         values['pressure'] = w.pressure()['press']
         
-        print(w.clouds())
+        print("=================== 2 ===2=========")
+        print(w.clouds)
+        print("=================== 2 =====3=======")
         values['clouds'] = w.clouds() #Cloud coverage
+        print("=================== 2 ======4======")
         values["sunrise"] = w.sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
+        print("=================== 2 =====5=======")
         values["sunset"] = w.sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
+        print("=================== 2 ====6========")
         values["weather_code"] =  w.weather_code()
+        print("=================== 2 ====7========")
         values["weather_icon"] = w.weather_icon_name()       
+        print("=================== 2 ====8========")
         values["visibility_distance"] = w.visibility_distance()      
-
+        print("=================== 2 =====9=======")
+        
         location = observation.location().get_name()
+        print("=================== 2 =====10=======")
         values["location"] = location
 
-        rain = w.get_rain()
+        print("=================== 2 ====11========")
+        rain = w.rain
+        print(rain)
         #If there is no data recorded from rain then return 0, otherwise #return the actual data
         if len(rain) == 0:
             values['lastrain'] = float("0")
@@ -125,6 +130,7 @@ try:
             if "1h" in rain:
                values['lastrain'] = rain["1h"]
             
+        print("=================== 2 ====12========")
         snow = w.get_snow()
         #If there is no data recorded from rain then return 0, otherwise #return the actual data
         if len(snow) == 0:
@@ -136,6 +142,7 @@ try:
                values['lastsnow'] = snow["1h"]            
 
 #       UV index
+        print("=================== 2 ===13=========")
         s = country.split(",")
         reg = owm.city_id_registry()
         list_of_locations = reg.locations_for(s[0], country=s[1])
@@ -154,6 +161,7 @@ try:
                             'measurement': influx_measurement
                             }
 
+        print("=================== 2 ============")
         client = InfluxDBClient(host=influx_server,
                                 port=influx_port)
         success = client.write(json_body,
