@@ -76,7 +76,7 @@ try:
         # Here put your city and Country ISO 3166 country codes
         observation = mgr.weather_at_place(country)
 
-        w = observation.get_weather()
+        w = observation.weather
         # Weather details from INTERNET
 
         values = dict()
