@@ -153,8 +153,9 @@ try:
         print(myLocation)
         print(myLocation.lat)
         print(myLocation.lon)
-        print(mgr.uvindex_around_coords(myLocation.lat, myLocation.lon ) )
-        values['uvi'] = mgr.uvindex_around_coords(mgr.uvindex_around_coords(myLocation.lat, myLocation.lon ) )
+        uvimgr = owm.uvindex_manager()
+        print(uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon ) )
+        values['uvi'] = uvimgr.uvindex_around_coords(myLocation.lat, myLocation.lon )
 
         # Print the data
         if __debug__:
