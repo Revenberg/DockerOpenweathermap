@@ -168,7 +168,7 @@ try:
                             'measurement': influx_measurement
                             }
 
-        print("=================== 2 ============")
+        print("=================== 2 ===1=========")
         client = InfluxDBClient(host=influx_server,
                                 port=influx_port)
         success = client.write(json_body,
