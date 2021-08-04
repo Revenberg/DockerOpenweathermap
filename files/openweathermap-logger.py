@@ -1,5 +1,5 @@
 from pyowm import OWM
-from pyowm.utils.config import config
+from pyowm.utils import pyowm_config
 from pyowm.utils import timestamps
 
 import os
@@ -65,7 +65,7 @@ except Exception as e:
     print('Error querying open database: ' )
     print(e)
 
-config_dict = config.get_default_config()
+config_dict = pyowm_config.get_default_config()
 config_dict['language'] = language
         
 try:
