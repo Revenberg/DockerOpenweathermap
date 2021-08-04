@@ -13,7 +13,8 @@ config.read("weather_config.ini")
 
 log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')
-apikey = config.get('Weather', 'apikey')
+apikey = os.getenv('apikey', '')
+
 country = config.get('Weather', 'country')
 language = config.get('Weather', 'language')
 
