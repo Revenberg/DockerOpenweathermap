@@ -6,7 +6,7 @@ if [ $rc -ne "0" ]; then
   git pull
   chmod +x build.sh
 
-  docker image build -t revenberg/DockerOpenweathermap .
+  docker image build -t revenberg/dockeropenweathermap .
 
-  docker push revenberg/DockerOpenweathermap
+  docker push revenberg/dockeropenweathermap
 fi

@@ -1,13 +1,13 @@
-# DockerOpenweathermap
+# dockeropenweathermap
 
 sudo apt install gnupg2 pass
-docker image build -t DockerOpenweathermap .
+docker image build -t dockeropenweathermap .
 docker login -u revenberg
-docker image push revenberg/DockerOpenweathermap:latest
+docker image push revenberg/dockeropenweathermap:latest
 
-docker run revenberg/DockerOpenweathermap
+docker run revenberg/dockeropenweathermap
 
 
 docker exec -it ??? /bin/sh
 
-docker push revenberg/DockerOpenweathermap:
+docker push revenberg/dockeropenweathermap:
