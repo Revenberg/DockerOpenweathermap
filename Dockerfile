@@ -10,4 +10,4 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-CMD python ./DockerOpenweathermap-logger.py
+CMD python ./openweathermap-logger.py
