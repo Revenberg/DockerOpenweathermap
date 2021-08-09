@@ -12,7 +12,7 @@ import init_db
 from influxdb import InfluxDBClient
 
 eConfig = configparser.RawConfigParser(allow_no_value=True)
-eConfig.read("weather_config.ini")
+eConfig.read("config.ini")
 
 log_path = eConfig.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = eConfig.getboolean('Logging', 'do_raw_log')

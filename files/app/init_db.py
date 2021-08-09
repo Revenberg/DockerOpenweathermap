@@ -9,7 +9,7 @@ import configparser
 from influxdb import InfluxDBClient
 
 config = configparser.RawConfigParser(allow_no_value=True)
-config.read("weather_config.ini")
+config.read("config.ini")
 
 ###########################
 # Variables
