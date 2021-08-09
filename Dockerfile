@@ -1,13 +1,13 @@
 FROM python:alpine3.7
 
-ENV apikey=
+RUN pip install --upgrade pip && pip uninstall serial
 
-RUN pip install --upgrade pip
+COPY files/requirements.txt /app/
 
-COPY files/* /app/
-COPY config/* /app/
 WORKDIR /app
-
 RUN pip install -r requirements.txt
+
+COPY files/app* /app/
+COPY config/* /app/
 
 CMD python ./openweathermap-logger.py
