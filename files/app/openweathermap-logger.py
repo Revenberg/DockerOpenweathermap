@@ -138,9 +138,7 @@ try:
         # Print the data
         if __debug__:
             print(values)
-        print(values)
-        sys.stdout.flush()
-
+        
         json_body = {'points': [{
                                  'tags': {'location':  location },
                                  'fields': {k: v for k, v in values.items()}
