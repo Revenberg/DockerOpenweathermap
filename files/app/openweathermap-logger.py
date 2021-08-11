@@ -157,7 +157,7 @@ try:
 
         client.close()
 
-        time.sleep( 360 )
+        time.sleep( 300 )
 except Exception as e:
     print(e)
     print("Unexpected error:", sys.exc_info()[0])
