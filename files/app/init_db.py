@@ -6,6 +6,7 @@ import binascii
 import time
 import sys
 import configparser
+import json
 from influxdb import InfluxDBClient
 
 config = configparser.RawConfigParser(allow_no_value=True)
@@ -19,6 +20,7 @@ do_raw_log = config.getboolean('Logging', 'do_raw_log')
 influx_server = config.get('InfluxDB', 'influx_server')
 influx_port = int(config.get('InfluxDB', 'influx_port'))
 influx_database = config.get('InfluxDB', 'database')
+influx_measurement = config.get('InfluxDB', 'measurement')
 
 if __debug__:
     print("running with debug")
@@ -26,12 +28,14 @@ if __debug__:
     print(influx_port)
     print(influx_database)
     print(do_raw_log)
+    print(influx_measurement)
+
 else:
     print("running without debug")
 
 # if the db is not found, then try to create it
 try:
-    dbclient = InfluxDBClient(host=influx_server, port=influx_port)
+    dbclient = InfluxDBClient(host=influx_server, port=influx_port )
     dblist = dbclient.get_list_database()
     db_found = False
     for db in dblist:
@@ -45,15 +49,26 @@ try:
     dbclient.create_retention_policy('60_days', '60d', 1, influx_database, default=False)
     dbclient.create_retention_policy('infinite', 'INF', 1, influx_database, default=False)
 
+    results = dbclient.query('SHOW FIELD KEYS ON "' + influx_database + '" FROM "' + influx_measurement + '"',
+                        # params isneeded, otherwise error 'database is required' happens
+                        params={'db': influx_database})
+
+    if not results:
+        print('error reading from database')
+    else:
+        select_clause = ""
+        for values in results.get_points():
+            if (select_clause == ""):
+                select_clause = 'SELECT mean("' + values['fieldKey'] + '") as "' + values['fieldKey'] + '"'
+            else:
+                select_clause = select_clause + ', mean("' + values['fieldKey'] + '") as "' + values['fieldKey'] + '"'
+        
+        dbclient.create_continuous_query("mean60", select_clause + ' INTO "60_days"."' + influx_measurement + '" FROM "' + influx_measurement + '" GROUP BY time(15m)', influx_database )
+        dbclient.create_continuous_query("meaninf", select_clause + ' INTO "infinite"."' + influx_measurement + '" FROM "' + influx_measurement + '" GROUP BY time(30m)', influx_database )
+
     print( dbclient.get_list_continuous_queries() )
-
-    weather_select_clause = 'SELECT mean("clouds") as "clouds",mean("detailed_status") as "detailed_status",mean("humidity") as "humidity",mean("lastrain") as "lastrain",mean("lastsnow") as "lastsnow",mean("location") as "location",mean("pressure") as "pressure",mean("status") as "status",mean("sunrise") as "sunrise",mean("sunset") as "sunset",mean("temp") as "temp",mean("weather_code") as "weather_code",mean("weather_icon") as "weather_icon",mean("wind_direction_deg") as "wind_direction_deg",mean("wind_speed") as "wind_speed"'
-    dbclient.create_continuous_query("weather_mean60", weather_select_clause + ' INTO "60_days"."weather" FROM "weather" GROUP BY time(15m)', influx_database )
-    dbclient.create_continuous_query("weather_meaninf", weather_select_clause + ' INTO "infinite"."weather" FROM "weather" GROUP BY time(30m)', influx_database )
-
-
-    print( dbclient.get_list_continuous_queries() )
+    dbclient.close()
 
 except Exception as e:
-    print('Error querying open database: ' + influx_database)
     print(e)
+    sys.exit('Error querying open database: ' + influx_database)
