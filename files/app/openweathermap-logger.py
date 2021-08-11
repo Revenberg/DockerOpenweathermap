@@ -95,7 +95,7 @@ try:
         values['pressure'] = w.pressure['press']
 
         values['clouds'] = w.clouds #Cloud coverage
-        values["sunrise"] = w.sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
+        values["sunrise"] = w.sunrise_time()*1000 #Sunrise time (GMT UNIXtime or ISO 8601)
         values["sunset"] = w.sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
         values["weather_code"] =  w.weather_code
         values["weather_icon"] = w.weather_icon_name
