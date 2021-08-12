@@ -46,8 +46,7 @@ try:
         if db['name'] == influx_database:
             db_found = True
     if not(db_found):
-        print('Database ' + influx_database + ' not found, trying to create it')
-        print( dbclient.get_list_continuous_queries())
+        print('Database ' + influx_database + ' not found, trying to create it')        
 
 #select_clause = 'SELECT mean("value") INTO "cpu_mean" ' \
 #                'FROM "weather" GROUP BY time(1m)'
