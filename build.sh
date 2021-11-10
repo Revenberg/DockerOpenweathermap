@@ -19,9 +19,9 @@ if [ $ex == true ]; then
     git pull
     chmod +x build.sh
 
-    docker image build -t revenberg/openweathermap .
+    docker image build -t revenberg/openweathermap:latest .
 
-    docker push revenberg/openweathermap
+    docker push revenberg/openweathermap:latest
 
     # testing: 
 
